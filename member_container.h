@@ -1,5 +1,11 @@
 #include "member.h"
+#include "date.h"
+#include "item_container.h"
 #include <vector>
+#include <sstream>
+#include <iomanip>
+#include <tuple>
+#include <algorithm>
 
 #ifndef MEMBER_CONTAINER_H
 #define MEMBER_CONTAINER_H
@@ -18,7 +24,7 @@ class MemberContainer
         void view_expiration_dates(int month);
         void view_membership_dues(string type = "All");
         void view_preferred_members_rebate();
-
+        string sales_report(const ItemContainer& items, const Date& date);
         void add_member();
         void remove_member();
 };

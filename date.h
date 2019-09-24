@@ -27,6 +27,7 @@ class Date
         void printNumeric() const;
         void printAlpha() const;
         Date addDays(int days) const;
+        bool operator==(const Date&);
 
     private:
     /***************

@@ -16,9 +16,44 @@ Member::Member(string n, int id, string member_type, Date d)
         this->annual_dues = 75;
 }
 
-SaleContainer Member::get_purchases()
+string Member::getName()
+{
+    return this->name;
+}
+
+int Member::getId()
+{
+    return this->member_id;
+}
+
+string Member::getType()
+{
+    return this->type;
+}
+
+Date& Member::getExpiration_date()
+{
+    return this->expiration_date;
+}
+
+double Member::getTotal()
+{
+    return this->total_amount_spent;
+}
+
+double Member::getRebate()
+{
+    return this->rebate;
+}
+
+SaleContainer& Member::get_purchases()
 {
     return this->purchases;
+}
+
+double Member::getAnnual_dues()
+{
+    return this->annual_dues;
 }
 
 void Member::add_purchase(Item i, Date d)

@@ -15,6 +15,8 @@ class SaleContainer
         void sales_report(Date d);
 
         void add_sale(Sale s);
+
+        vector<Sale>& getSales();
 };
 
 #endif /* SALE_CONTAINER */

@@ -1,6 +1,7 @@
 #include "sale_container.h"
 #include "date.h"
 #include <iostream>
+
 using namespace std;
 
 #ifndef MEMBER_H
@@ -22,8 +23,14 @@ class Member
 
     public:
         Member(string n, int id, string member_type, Date d);
-        
-        SaleContainer get_purchases();
+        string getName();
+        int getId();
+        string getType();
+        Date& getExpiration_date();
+        double getTotal();
+        double getRebate();
+        SaleContainer& get_purchases();
+        double getAnnual_dues();
         void add_purchase(Item i, Date d);
         void update_expiration_date(Date d);
 

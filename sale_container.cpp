@@ -14,3 +14,8 @@ void SaleContainer::add_sale(Sale s)
 {
     this->sales.push_back(s);
 }
+
+vector<Sale>& SaleContainer::getSales()
+{
+    return sales;
+}
