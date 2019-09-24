@@ -35,20 +35,22 @@ void MemberContainer::view_preferred_members_rebate()
     ;
 }
 
-string MemberContainer::sales_report(const ItemContainer& items,
-                                     const Date& date)
+string MemberContainer::sales_report(const Date& date)
 {
-    stringstream stream;    // Convert output to an string
-    string answer;          // Returning
+    stringstream stream;    // Convert output to a string
+    string answer;          // Return string
+    int basic = 0;          // Count for every basic member
+    int preferred = 0;      // Count for every preferred member
 
-    // This vector stored the item name, amount, and its price, but sperated by members
+    // This vector stored the item name, amount, and its price on a day, but seperated by members
     vector<tuple<string, int, double>> list;
-    stream << right << setw(15) << "Items" << setw(15) << "Amount"
+    stream << left << setw(15) << "Items" << setw(15) << "Amount"
            << setw(15) << "Total" << endl;
     answer += stream.str();
-    for (size_t i = 0; i < this->members.size(); i++)
+    // Processing
+    for (size_t i = 0; i < members.size(); i++)
     {
-        vector<Sale> sales = members[i].get_purchases().getSales;
+        vector<Sale> sales = members[i].get_purchases().getSales();
         int amount = 0;
         string itemName;
         vector<string> itemCounted;
@@ -58,20 +60,28 @@ string MemberContainer::sales_report(const ItemContainer& items,
             // To avoid from repeating counting, if the item name has been counted, then
             // we do nothing, else we count the amount of it, and store name to another vector
             // that store counted name
-            if (find(itemCounted.begin(), itemCounted.end(), itemName) == itemCounted.end())  //If not found
+            if (find(itemCounted.begin(), itemCounted.end(), itemName) == itemCounted.end())  //If not found, that means a item has not been counted yet.
             {
-                itemName = sales[j].item.name;
                 // This loop check the date and item name and count the amount
+                // And the reason is that one member may buy a same thing twice on the different day of 
                 for (size_t k = 0; k < sales.size(); k++)
                 {
                     if (sales[k].date_of_purchase == date && sales[k].item.name == itemName)
                     {
-                        amount++;
+                        amount+=sales[k].quantity;
                     }
                 }
                 list.push_back({itemName, amount, sales[j].item.price});
                 itemCounted.push_back(itemName);
             }
+        }
+        if (amount > 0 && members[i].getType() == "Basic")
+        {
+            basic++;
+        }
+        else if (amount > 0 && members[i].getType() == "Preferred")
+        {
+            preferred++;
         }
     }
     vector<tuple<string, int, double>> list2;   // This vector is a general vector, item name, amount and total
@@ -94,12 +104,20 @@ string MemberContainer::sales_report(const ItemContainer& items,
             itemCounted.push_back(itemName);
         }
     }
+    double final_total = 0;
     for (size_t i = 0; i < list2.size(); i++)
     {
-        stream << right << setw(15) << get<0>(list[i]) << setw(15) << get<1>(list[i]) 
-           << setw(15) << get<2>(list[i])  << endl;
+        stream << left << setw(15) << get<0>(list2[i]) << setw(15) << get<1>(list2[i]) 
+           << setw(15) << get<2>(list2[i])  << endl;
         answer += stream.str(); 
+        final_total += get<2>(list2[i]);
     }
+    stream << left << setw(30) << "Final Total: " << final_total << endl;
+    answer += stream.str();
+    stream << left << setw(30) << "Basic: " << basic << endl;
+    answer += stream.str();
+    stream << left << setw(30) << "Preferred: " << preferred << endl;
+    answer += stream.str();
     return answer;
 }
 

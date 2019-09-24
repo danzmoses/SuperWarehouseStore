@@ -24,7 +24,7 @@ class MemberContainer
         void view_expiration_dates(int month);
         void view_membership_dues(string type = "All");
         void view_preferred_members_rebate();
-        string sales_report(const ItemContainer& items, const Date& date);
+        string sales_report(const Date& date);
         void add_member();
         void remove_member();
 };
