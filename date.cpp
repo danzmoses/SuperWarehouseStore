@@ -238,11 +238,6 @@ Date Date::addDays(int days) const
     return Date(current_month, current_day, current_year);  
 }
 
-bool Date::operator==(const Date& date)
-{
-    return this->day == date.day && this->month == date.month && this->year == date.year;
-}
-
 // PRIVATE HELPER FUNCTIONS
 /************************************************************ 
  * Accessor isLeap: Class Date
@@ -343,4 +338,11 @@ unsigned Date::number(const string &mn) const // IN: month (string)
     }
     // if the month doesn't exist, return 0
     return 0;
+}
+
+bool Date::operator==(const Date& other)
+{
+    return this->month == other.month &&
+            this->day == other.day &&
+            this->year == other.year;
 }

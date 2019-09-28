@@ -1,7 +1,6 @@
 #include "member.h"
-#include "date.h"
-#include "item_container.h"
 #include <vector>
+#include <fstream>
 #include <sstream>
 #include <iomanip>
 #include <tuple>
@@ -16,17 +15,29 @@ class MemberContainer
         vector<Member> members;
 
     public:
+
         MemberContainer();
+        MemberContainer(string file);
+
+
+        Member& operator[](int index) { return this->members[index]; }
+        int size() { return this->members.size(); }
 
         void view_purchases(int member_id);
-        void view_purchases(string name);
-        void view_all_purchases(string type = "All");
+        void view_single_member_purchases(string name);
+        void view_all_member_purchases(string type = "All");
+        void view_grand_total_purchases();
         void view_expiration_dates(int month);
         void view_membership_dues(string type = "All");
         void view_preferred_members_rebate();
-        string sales_report(const Date& date);
-        void add_member();
-        void remove_member();
+
+        string sales_report(Date date);
+        string member_information(int index);
+
+        void add_member(Member m);
+        void remove_member(int index);
+        void sort_by_member_id();
+        void sort_by_name();
 };
 
 #endif /* MEMBER_CONTAINER_H */

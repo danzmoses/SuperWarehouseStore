@@ -12,11 +12,9 @@ class SaleContainer
     public:
         SaleContainer();
 
-        void sales_report(Date d);
-
+        Sale operator[](int index) { return this->sales[index]; }
+        int size() { return this->sales.size(); }
         void add_sale(Sale s);
-
-        vector<Sale>& getSales();
 };
 
 #endif /* SALE_CONTAINER */

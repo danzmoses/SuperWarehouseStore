@@ -27,7 +27,10 @@ class Date
         void printNumeric() const;
         void printAlpha() const;
         Date addDays(int days) const;
-        bool operator==(const Date&);
+        unsigned get_day() { return this->day; }
+        unsigned get_month() { return this->month; }
+        unsigned get_year() { return this->year; }
+        bool operator==(const Date& other);
 
     private:
     /***************
