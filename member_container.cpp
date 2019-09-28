@@ -229,7 +229,24 @@ string MemberContainer::member_information(int index)
     return ss.str();
 }
 
-
+string MemberContainer::expiration_dates_report(int month)
+{
+    stringstream ss;
+    ss << left << setw(15) << "Name" << setw(15) << "Type" << setw(15)
+    << "Due" << "Expiration Date" << endl;
+    for (int i = 0; i < members.size(); i++)
+    {
+        if (0 <= members[i].get_expiration_date().get_month() - month <= 1)
+        {
+            ss << left << setw(15) << members[i].get_name() << setw(15) <<
+            members[i].get_type() << setw(15) << members[i].get_annual_dues()
+            << members[i].get_expiration_date().get_month() << " / "
+            << members[i].get_expiration_date().get_day() << " / " <<
+            members[i].get_expiration_date().get_year() << endl;
+        }
+    }
+    return ss.str();
+}
 
 
 void MemberContainer::add_member(Member m)

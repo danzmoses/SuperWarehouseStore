@@ -33,6 +33,7 @@ class MemberContainer
 
         string sales_report(Date date);
         string member_information(int index);
+        string expiration_dates_report(int month);
 
         void add_member(Member m);
         void remove_member(int index);

@@ -25,7 +25,8 @@ class Member
         Member(string n, int id, string member_type, Date d);
         void add_purchase(Item i, Date d, int quantity);
         void update_expiration_date(Date d);
-
+        void calc_rebate();
+        bool is_convert();
         // getters
         string get_name() { return this->name; }
         int get_member_id() { return this->member_id; }
