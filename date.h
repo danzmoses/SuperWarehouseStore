@@ -1,4 +1,5 @@
 #include <string>
+#include <sstream>
 using namespace std;
 
 #ifndef DATE_H
@@ -31,6 +32,8 @@ class Date
         unsigned get_month() { return this->month; }
         unsigned get_year() { return this->year; }
         bool operator==(const Date& other);
+        string returnNumeric() const;
+        string returnAlpha() const;
 
     private:
     /***************

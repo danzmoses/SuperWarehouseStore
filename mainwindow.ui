@@ -126,13 +126,6 @@
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QPushButton" name="member_purchases_button">
-              <property name="text">
-               <string>Member Purchases</string>
-              </property>
-             </widget>
-            </item>
            </layout>
           </item>
          </layout>
@@ -177,7 +170,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_13">
             <item>
-             <widget class="QPushButton" name="view_member_purchases_button">
+             <widget class="QPushButton" name="member_information_button">
               <property name="text">
                <string>Member Information</string>
               </property>
@@ -208,26 +201,6 @@
          <layout class="QHBoxLayout" name="horizontalLayout_10">
           <item>
            <spacer name="horizontalSpacer_6">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="single_item_report_button">
-            <property name="text">
-             <string>Single Item Report</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_5">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -295,7 +268,7 @@
         <string>Store</string>
        </property>
        <property name="checked">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -318,7 +291,7 @@
         <string>Member</string>
        </property>
        <property name="checked">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -370,7 +343,7 @@
      <item>
       <widget class="QStackedWidget" name="input_stacked_widget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="add_member_page">
         <widget class="QWidget" name="verticalLayoutWidget_3">
@@ -808,6 +781,7 @@
          </layout>
         </widget>
        </widget>
+       <widget class="QWidget" name="page"/>
       </widget>
      </item>
     </layout>
