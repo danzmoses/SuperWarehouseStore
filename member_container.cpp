@@ -258,3 +258,61 @@ void MemberContainer::remove_member(int index)
 {
     this->members.erase(this->members.begin() + index);
 }
+
+void MemberContainer::inputSales(const char* file_name, const ItemContainer& items)
+{
+    ifstream inFile;
+    string line;
+    inFile.open(file_name);
+    int id;
+    string item_name;
+    string price;
+    string quantity;
+    string month, date, year;
+    while (getline(inFile, line))
+    {
+        month += line[0];
+        month += line[1];
+        date += line[3];
+        date += line[4];
+        year += line.substr(6);
+        
+        getline(inFile, line);
+        id = atoi(line.c_str());
+
+        getline(inFile, line);
+        item_name = line;
+
+        getline(inFile, line);
+        int i = 0;
+        for (; line[i] != ' '; i++)
+        {
+            price += line[i];
+        }
+        quantity = line.substr(i);
+
+        Date today(atoi(month.c_str()),
+                    atoi(date.c_str()),
+                    atoi(year.c_str()));
+        for (int k = 0; k < members.size(); k++)
+        {
+            if (members[k].get_member_id() == id)
+            {
+                for (int j = 0; j < items.size(); j++)
+                {
+                    if (items[k].name == item_name)
+                    {
+                        members[k].add_purchase(items[k], today,
+                        atoi(quantity.c_str()));
+                    }
+                }
+            }
+        }
+        month = "";
+        date = "";
+        year = "";
+        price = "";
+        quantity = "";
+    }
+    inFile.close();
+}

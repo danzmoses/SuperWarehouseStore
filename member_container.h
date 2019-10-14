@@ -1,4 +1,5 @@
 #include "member.h"
+#include "item_container.h"
 #include <vector>
 #include <fstream>
 #include <sstream>
@@ -39,6 +40,7 @@ class MemberContainer
         void remove_member(int index);
         void sort_by_member_id();
         void sort_by_name();
+        void inputSales(const char* file_name, const ItemContainer& items);
 };
 
 #endif /* MEMBER_CONTAINER_H */
