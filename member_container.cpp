@@ -259,7 +259,7 @@ void MemberContainer::remove_member(int index)
     this->members.erase(this->members.begin() + index);
 }
 
-void MemberContainer::inputSales(const char* file_name, const ItemContainer& items)
+void MemberContainer::inputSales(const char* file_name)
 {
     ifstream inFile;
     string line;
@@ -294,18 +294,12 @@ void MemberContainer::inputSales(const char* file_name, const ItemContainer& ite
         Date today(atoi(month.c_str()),
                     atoi(date.c_str()),
                     atoi(year.c_str()));
+        Item addendItem(item_name, atof(price.c_str()));
         for (int k = 0; k < members.size(); k++)
         {
             if (members[k].get_member_id() == id)
             {
-                for (int j = 0; j < items.size(); j++)
-                {
-                    if (items[k].name == item_name)
-                    {
-                        members[k].add_purchase(items[k], today,
-                        atoi(quantity.c_str()));
-                    }
-                }
+                members[k].add_purchase(addendItem ,today, atoi(quantity.c_str()));
             }
         }
         month = "";
