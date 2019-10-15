@@ -299,7 +299,8 @@ void MemberContainer::inputSales(const char* file_name)
         {
             if (members[k].get_member_id() == id)
             {
-                members[k].add_purchase(addendItem ,today, atoi(quantity.c_str()));
+                members[k].add_purchase(addendItem, today,
+                                        atoi(quantity.c_str()));
             }
         }
         month = "";
