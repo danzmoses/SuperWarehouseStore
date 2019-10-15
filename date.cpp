@@ -346,3 +346,27 @@ bool Date::operator==(const Date& other)
             this->day == other.day &&
             this->year == other.year;
 }
+
+string Date::returnAlpha() const
+{
+    stringstream ss;
+    ss << this->monthName << ' ' << this->day << ", " << this->year;
+    return ss.str();
+}
+
+string Date::returnNumeric() const
+{
+    stringstream ss;
+    if (this->month < 10)
+        ss << '0' << this->month;
+    else
+        ss << this->month;
+    ss << '/';
+    if (this->day < 10)
+        ss << '0' << this->day;
+    else
+        ss << this->day;
+    ss << '/' << this->year;
+
+    return ss.str();
+}

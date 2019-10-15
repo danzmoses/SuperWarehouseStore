@@ -16,35 +16,6 @@ Member::Member(string n, int id, string member_type, Date d)
         this->annual_dues = 75;
 }
 
-void Member::calc_rebate()
-{
-    double total = 0;
-    for (int i = 0; i < purchases.size(); i++)
-    {
-        // Here I'm calc rebate for all even though basic members have no rebate
-        // but i need the rebate in the  is_convert() function
-        total += purchases[i].item.price * purchases[i].quantity;
-    }
-
-    rebate = total * 0.05;
-}
-
-bool Member::is_convert()
-{
-    if (rebate >= 75 && type == "basic")
-    {
-        return true;  // A basic member needs to convert to preferred
-    }
-    else if (rebate < 75 && type == "preferred")
-    {
-        return true;  // A preferred member needs to convert to preferred
-    }
-    else
-    {
-        return false;
-    }
-}
-
 SaleContainer Member::get_purchases()
 {
     return this->purchases;
@@ -67,4 +38,22 @@ double Member::get_total_amount_spent()
     for (unsigned int i = 0; i < this->purchases.size(); ++i)
         total += this->purchases[i].item.price;
     return total;
+}
+
+bool Member::should_convert()
+{
+    double rebate = this->calculate_rebate();
+    if (this->type == "Basic" && rebate >= 75)
+        return true;
+    if (this->type == "Preferred" && rebate < 75)
+        return true;
+    return false;
+}
+
+double Member::calculate_rebate()
+{
+    double total = 0;
+    for (int i = 0; i < this->purchases.size(); ++i)
+        total += this->purchases[i].item.price * this->purchases[i].quantity;
+    return total * 0.05;
 }

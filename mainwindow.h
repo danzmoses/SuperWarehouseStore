@@ -28,11 +28,13 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void load();
+    void save();
 
 private:
     Ui::MainWindow *ui;
-    MemberContainer member_list = MemberContainer("D:\\Qt\\CS8\\SuperWarehouseStore\\warehouseShoppers.txt");
-    ItemContainer item_list = ItemContainer("D:\\Qt\\CS8\\SuperWarehouseStore\\items.txt");
+    MemberContainer member_list;
+    ItemContainer item_list;
     ItemContainer cart;
     Date current_date;
 
@@ -47,13 +49,20 @@ private slots:
     void confirm_sale();
 
     // reports
-    void view_member_purchases();
+    void view_single_member_purchases();
     void view_sales_report();
     void view_item_report();
+    void view_total_member_purchases();
+    void view_annual_dues();
+    void view_membership_expirations();
+    void view_member_rebates();
+
 
     void switch_to_add_member();
     void switch_to_remove_member();
     void switch_to_add_sale();
+
+    void remove_member_information();
 
 };
 
